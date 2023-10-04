@@ -1,0 +1,11 @@
+---
+
+- name: start and enable service
+  ansible.builtin.service:
+    name: "{{ ansible_service.name }}"
+    state: "{{ ansible_service.state | default('started') }}"
+    enabled: "{{ ansible_service.enabled | default(true) | bool }}"
+  notify:
+    - query the systemd journal
+
+...

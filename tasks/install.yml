@@ -1,0 +1,27 @@
+---
+
+- name: install package
+  ansible.builtin.package:
+    name: "{{ ansible_packages }}"
+    state: present
+
+- name: get information
+  ansible.builtin.command: |
+    ansible --version
+  register: ansible_information
+
+# - name: define ansible version
+#   ansible.builtin.set_fact:
+#     ansible_version: "{{ ansible_information.version }}"
+#     ansible_major_version: "{{ ansible_information.major_version }}"
+#   when:
+#     - ansible_information.rc == 0
+#
+# - name: create custom fact file
+#   bodsch.core.facts:
+#     name: ansible
+#     facts:
+#       version: "{{ ansible_version }}"
+#       major_version: "{{ ansible_major_version }}"
+
+...

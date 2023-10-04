@@ -1,0 +1,12 @@
+---
+
+- name: create ansible configuration
+  ansible.builtin.template:
+    src: ansible.cfg.j2
+    dest: /etc/ansible.cfg
+    owner: root
+    group: root
+    mode: 0644
+    backup: true
+
+...

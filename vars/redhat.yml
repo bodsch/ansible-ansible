@@ -1,0 +1,16 @@
+---
+
+ansible_dependencies:
+  - iproute
+
+ansible_defaults_service:
+  name: ansibled
+  executable: /usr/sbin/ansibled
+  state: started
+  enable: true
+
+ansible_system_config:
+  template: sysconfig/ansible.j2
+  file: /etc/sysconfig/ansibled
+
+...

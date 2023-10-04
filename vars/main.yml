@@ -1,0 +1,67 @@
+---
+
+ansible_dependencies: []
+
+ansible_packages:
+  - ansible
+
+# ---------------------------------------------------------------------------------------
+
+ansible_defaults_config:
+  system:
+    default: {}
+    privilege_escalation: {}
+    persistent_connection: {}
+    connection: {}
+    colors: {}
+    selinux: {}
+    diff: {}
+    galaxy: {}
+    inventory: {}
+    netconf_connection: {}
+    paramiko_connection: {}
+    jinja2: {}
+    tags: {}
+    runas_become_plugin: {}
+    su_become_plugin: {}
+    sudo_become_plugin: {}
+    callback_tree: {}
+    ssh_connection: {}
+    winrm: {}
+    inventory_plugins: {}
+    inventory_plugin_script: {}
+    inventory_plugin_yaml: {}
+    url_lookup: {}
+    powershell: {}
+    vars_host_group_vars: {}
+  users: []
+    # - name: foo
+    #   default: {}
+    #   privilege_escalation: {}
+    #   persistent_connection: {}
+    #   connection: {}
+    #   colors: {}
+    #   selinux: {}
+    #   diff: {}
+    #   galaxy: {}
+    #   inventory: {}
+    #   netconf_connection: {}
+    #   paramiko_connection: {}
+    #   jinja2: {}
+    #   tags: {}
+    #   runas_become_plugin: {}
+    #   su_become_plugin: {}
+    #   sudo_become_plugin: {}
+    #   callback_tree: {}
+    #   ssh_connection: {}
+    #   winrm: {}
+    #   inventory_plugins: {}
+    #   inventory_plugin_script: {}
+    #   inventory_plugin_yaml: {}
+    #   url_lookup: {}
+    #   powershell: {}
+    #   vars_host_group_vars: {}
+
+ansible_config_file: /etc/ansible.cfg
+
+...
