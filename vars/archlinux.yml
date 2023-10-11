@@ -1,13 +1,6 @@
 ---
 
-ansible_defaults_service:
-  name: ansibled
-  executable: /usr/bin/ansibled
-  state: started
-  enable: true
-
-ansible_system_config:
-  template: default/ansible.j2
-  file: /etc/default/ansibled
+ansible_packages:
+  - ansible
 
 ...

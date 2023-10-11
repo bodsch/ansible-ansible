@@ -5,11 +5,11 @@
     name: "{{ ansible_packages }}"
     state: present
 
-- name: get information
-  ansible.builtin.command: |
-    ansible --version
-  register: ansible_information
-
+# - name: get information
+#   ansible.builtin.command: |
+#     ansible --version
+#   register: ansible_information
+#
 # - name: define ansible version
 #   ansible.builtin.set_fact:
 #     ansible_version: "{{ ansible_information.version }}"

@@ -2,7 +2,7 @@
 
 ansible_dependencies: []
 
-ansible_packages:
+ansible_defaults_packages:
   - ansible
 
 # ---------------------------------------------------------------------------------------
