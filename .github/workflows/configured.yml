@@ -1,5 +1,5 @@
 ---
-name: configured chrony
+name: configured ansible
 
 on:
   workflow_dispatch:
@@ -11,7 +11,7 @@ on:
 
 defaults:
   run:
-    working-directory: 'ansible-chrony'
+    working-directory: 'ansible-ansible'
 
 jobs:
   deb:
@@ -34,7 +34,7 @@ jobs:
       - name: check out the codebase.
         uses: actions/checkout@v3
         with:
-          path: 'ansible-chrony'
+          path: 'ansible-ansible'
           ref: ${{ github.event.workflow_run.head_branch }}
 
       - name: 🐍 set up python
