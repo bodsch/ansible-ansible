@@ -153,7 +153,7 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           DISTRIBUTION: ${{ matrix.image }}
 
-  arch enhanced:
+  arch_enhanced:
     name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
     runs-on: ubuntu-20.04
     needs:
@@ -206,7 +206,7 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           DISTRIBUTION: ${{ matrix.image }}
 
-  debian enhanced:
+  debian_enhanced:
     name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
     runs-on: ubuntu-20.04
     needs:
