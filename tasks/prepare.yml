@@ -27,8 +27,4 @@
   when:
     - ansible_dependencies | default([]) | count > 0
 
-- name: merge ansible configuration between defaults and custom
-  ansible.builtin.set_fact:
-    ansible_config: "{{ ansible_defaults_config | combine(ansible_config, recursive=True) }}"
-
 ...

@@ -9,11 +9,180 @@ ansible_defaults_packages:
 
 ansible_defaults_config:
   system:
-    default: {}
-    privilege_escalation: {}
-    persistent_connection: {}
-    connection: {}
-    colors: {}
+    defaults:
+      action_plugins: ""                                # {% raw %}{{ ANSIBLE_HOME ~ "/plugins/action:/usr/share/ansible/plugins/action" }}{% endraw %}
+      action_warnings: ""                               # True
+      admin_users: ""                                   # root, toor
+      allow_unsafe_lookups: ""                          # False
+      allow_world_readable_tmpfiles: ""                 # False
+      ansible_managed: ""                               # Ansible managed
+      any_errors_fatal: ""                              # False
+      ask_pass: ""                                      # False
+      ask_vault_pass: ""                                # False
+      async_dir: ""                                     # ~/.ansible_async
+      become_password_file: ""                          #
+      become_plugins: ""                                # {% raw %}{{ ANSIBLE_HOME ~ "/plugins/become:/usr/share/ansible/plugins/become" }}{% endraw %}
+      bin_ansible_callbacks: ""                         # False
+      cache_plugins: ""                                 # {% raw %}{{ ANSIBLE_HOME ~ "/plugins/cache:/usr/share/ansible/plugins/cache" }}{% endraw %}
+      callback_format_pretty: ""                        #
+      callback_plugins: ""                              # {% raw %}{{ ANSIBLE_HOME ~ "/plugins/callback:/usr/share/ansible/plugins/callback" }}{% endraw %}
+      callback_result_format: ""                        # json
+      callbacks_enabled: ""                             #
+      check_mode_markers: ""                            # False
+      cliconf_plugins: ""                               # {% raw %}{{ ANSIBLE_HOME ~ "/plugins/cliconf:/usr/share/ansible/plugins/cliconf" }}{% endraw %}
+      collections_on_ansible_version_mismatch: ""       # warning
+      collections_path: ""                              # {% raw %}{{ ANSIBLE_HOME ~ "/collections:/usr/share/ansible/collections" }}{% endraw %}
+      collections_scan_sys_path: ""                     # True
+      common_remote_group: ""                           #
+      connection_password_file: ""                      #
+      connection_plugins: ""                            # {% raw %}{{ ANSIBLE_HOME ~ "/plugins/connection:/usr/share/ansible/plugins/connection" }}{% endraw %}
+      cow_selection: ""                                 # default
+      cowpath: ""                                       #
+      cowsay_enabled_stencils: []                       # bud-frogs, bunny, cheese, daemon, default, dragon, elephant-in-snake, elephant, eyes, hellokitty, kitty, luke-koala, meow, milk, moofasa, moose, ren, sheep, small, stegosaurus, stimpy, supermilker, three-eyes, turkey, turtle, tux, udder, vader-koala, vader, www
+      debug: ""                                         # False
+      deprecation_warnings: ""                          # True
+      devel_warning: ""                                 # True
+      display_args_to_stdout: ""                        # False
+      display_failed_stderr: ""                         # False
+      display_ok_hosts: ""                              # True
+      display_skipped_hosts: ""                         # True
+      doc_fragment_plugins: ""                          # {% raw %}{{ ANSIBLE_HOME ~ "/plugins/doc_fragments:/usr/share/ansible/plugins/doc_fragments" }}{% endraw %}
+      docsite_root_url: ""                              # https://docs.ansible.com/ansible-core/
+      duplicate_dict_key: ""                            # warn
+      enable_task_debugger: ""                          # False
+      error_on_missing_handler: ""                      # True
+      error_on_undefined_vars: ""                       # True
+      executable: ""                                    # /bin/sh
+      fact_caching: ""                                  # memory
+      fact_caching_connection: ""                       #
+      fact_caching_prefix: ""                           # ansible_facts
+      fact_caching_timeout: ""                          # 86400
+      fact_path: ""                                     #
+      facts_modules: ""                                 # smart
+      filter_plugins: ""                                # {% raw %}{{ ANSIBLE_HOME ~ "/plugins/filter:/usr/share/ansible/plugins/filter" }}{% endraw %}
+      force_color: ""                                   # False
+      force_handlers: ""                                # False
+      force_valid_group_names: ""                       # never
+      forks: ""                                         # 5
+      gather_subset: ""                                 #
+      gather_timeout: ""                                #
+      gathering: ""                                     # implicit
+      hash_behaviour: ""                                # replace
+      home: ""                                          # ~/.ansible
+      host_key_checking: ""                             # True
+      httpapi_plugins: ""                               # {% raw %}{{ ANSIBLE_HOME ~ "/plugins/httpapi:/usr/share/ansible/plugins/httpapi" }}{% endraw %}
+      inject_facts_as_vars: ""                          # True
+      internal_poll_interval: ""                        # 0.001
+      interpreter_python: ""                            # auto
+      invalid_task_attribute_failed: ""                 # True
+      inventory: ""                                     # /etc/ansible/hosts
+      inventory_plugins: ""                             # {% raw %}{{ ANSIBLE_HOME ~ "/plugins/inventory:/usr/share/ansible/plugins/inventory" }}{% endraw %}
+      jinja2_extensions: ""                             # []
+      jinja2_native: ""                                 # False
+      jinja2_native_warning: ""                         # True
+      keep_remote_files: ""                             # False
+      library: ""                                       # {% raw %}{{ ANSIBLE_HOME ~ "/plugins/modules:/usr/share/ansible/plugins/modules" }}{% endraw %}
+      local_tmp: ""                                     # {% raw %}{{ ANSIBLE_HOME ~ "/tmp" }}{% endraw %}
+      localhost_warning: ""                             # True
+      log_filter: ""                                    #
+      log_path: ""                                      #
+      lookup_plugins: ""                                # {% raw %}{{ ANSIBLE_HOME ~ "/plugins/lookup:/usr/share/ansible/plugins/lookup" }}{% endraw %}
+      max_diff_size: ""                                 # 104448
+      module_args: ""                                   #
+      module_compression: ""                            # ZIP_DEFLATED
+      module_ignore_exts: ""                            # {% raw %}{{(REJECT_EXTS + ('.yaml', '.yml', '.ini'))}}
+      module_name: ""                                   # command
+      module_utils: ""                                  # {% raw %}{{ ANSIBLE_HOME ~ "/plugins/module_utils:/usr/share/ansible/plugins/module_utils" }}{% endraw %}
+      netconf_plugins: ""                               # {% raw %}{{ ANSIBLE_HOME ~ "/plugins/netconf:/usr/share/ansible/plugins/netconf" }}{% endraw %}
+      network_group_modules: []                         # eos, nxos, ios, iosxr, junos, enos, ce, vyos, sros, dellos9, dellos10, dellos6, asa, aruba, aireos, bigip, ironware, onyx, netconf, exos, voss, slxos
+      no_log: ""                                        # False
+      no_target_syslog: ""                              # False
+      nocolor: ""                                       # False
+      nocows: ""                                        # False
+      null_representation: ""                           #
+      old_plugin_cache_clear: ""                        # False
+      playbook_dir: ""                                  #
+      playbook_vars_root: ""                            # top
+      plugin_filters_cfg: ""                            #
+      poll_interval: ""                                 # 15
+      precedence: ""                                    # all_inventory, groups_inventory, all_plugins_inventory, all_plugins_play, groups_plugins_inventory, groups_plugins_play
+      private_key_file: ""                              #
+      private_role_vars: ""                             # False
+      python_module_rlimit_nofile: ""                   # 0
+      remote_port: ""                                   #
+      remote_tmp: ""                                    # ~/.ansible/tmp
+      remote_user: ""                                   #
+      retry_files_enabled: ""                           # False
+      retry_files_save_path: ""                         #
+      roles_path: ""                                    # {% raw %}{{ ANSIBLE_HOME ~ "/roles:/usr/share/ansible/roles:/etc/ansible/roles" }}{% endraw %}
+      run_vars_plugins: ""                              # demand
+      show_custom_stats: ""                             # False
+      show_per_host_start: ""                           # False
+      show_task_path_on_failure: ""                     # False
+      stdout_callback: ""                               # default
+      strategy: ""                                      # linear
+      strategy_plugins: ""                              # {% raw %}{{ ANSIBLE_HOME ~ "/plugins/strategy:/usr/share/ansible/plugins/strategy" }}{% endraw %}
+      string_conversion_action: ""                      # warn
+      su: ""                                            # False
+      syslog_facility: ""                               # LOG_USER
+      system_tmpdirs: ""                                # /var/tmp, /tmp
+      system_warnings: ""                               # True
+      task_debugger_ignore_errors: ""                   # True
+      task_timeout: ""                                  # 0
+      terminal_plugins: ""                              # {% raw %}{{ ANSIBLE_HOME ~ "/plugins/terminal:/usr/share/ansible/plugins/terminal" }}{% endraw %}
+      test_plugins: ""                                  # {% raw %}{{ ANSIBLE_HOME ~ "/plugins/test:/usr/share/ansible/plugins/test" }}{% endraw %}
+      timeout: ""                                       # 10
+      transport: ""                                     # smart
+      use_persistent_connections: ""                    # False
+      validate_action_group_metadata: ""                # True
+      vars_plugins: ""                                  # {% raw %}{{ ANSIBLE_HOME ~ "/plugins/vars:/usr/share/ansible/plugins/vars" }}{% endraw %}
+      vars_plugins_enabled: ""                          # host_group_vars
+      vault_encrypt_identity: ""                        #
+      vault_id_match: ""                                # False
+      vault_identity: ""                                # default
+      vault_identity_list: ""                           #
+      vault_password_file: ""                           #
+      verbose_to_stderr: ""                             # False
+      verbosity: ""                                     # 0
+      win_async_startup_timeout: ""                     # 5
+      yaml_valid_extensions: ""                         # .yml, .yaml, .json
+
+    privilege_escalation:
+      agnostic_become_prompt: ""                        # True
+      become_allow_same_user: ""                        # False
+      become: ""                                        # False
+      become_ask_pass: ""                               # False
+      become_exe: ""                                    #
+      become_flags: ""                                  #
+      become_method: ""                                 # sudo
+      become_user: ""                                   # root
+
+    persistent_connection:
+      ansible_connection_path: ""                       #
+      command_timeout: ""                               # 30
+      connect_retry_timeout: ""                         # 15
+      connect_timeout: ""                               # 30
+      control_path_dir: ""                              # {% raw %}{{ ANSIBLE_HOME ~ "/pc" }}{% endraw %}
+
+    connection:
+      pipelining: ""                                    # False
+
+    colors:
+      changed: ""                                      # yellow
+      console_prompt: ""                               # white
+      debug: ""                                        # dark gray
+      deprecate: ""                                    # purple
+      diff_add: ""                                     # green
+      diff_lines: ""                                   # cyan
+      diff_remove: ""                                  # red
+      error: ""                                        # red
+      highlight: ""                                    # white
+      ok: ""                                           # green
+      skip: ""                                         # cyan
+      unreachable: ""                                  # bright red
+      verbose: ""                                      # blue
+      warn: ""                                         # bright purple
+
     selinux: {}
     diff: {}
     galaxy: {}

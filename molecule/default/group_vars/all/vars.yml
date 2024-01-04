@@ -1,5 +1,3 @@
 ---
 
-ansible_query_journald: true
-
 ...

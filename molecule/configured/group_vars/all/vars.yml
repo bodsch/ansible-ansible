@@ -1,0 +1,28 @@
+---
+
+ansible_config:
+  system:
+    defaults:
+      # (boolean) By default Ansible will issue a warning when received from a task action (module or action plugin)
+      # These warnings can be silenced by adjusting this setting to False.
+      action_warnings: false
+      # (list) Accept list of cowsay templates that are 'safe' to use, set to empty list if you want to enable all installed templates.
+      # bud-frogs, bunny, cheese, daemon, default, dragon, elephant-in-snake, elephant, eyes, hellokitty, kitty, luke-koala, meow, milk, moofasa, moose, ren, sheep, small, stegosaurus, stimpy, supermilker, three-eyes, turkey, turtle, tux, udder, vader-koala, vader, www
+      cowsay_enabled_stencils:
+        - daemon
+      # (string) Specify a custom cowsay path or swap in your cowsay implementation of choice
+      # cowpath: ""
+      # (string) This allows you to chose a specific cowsay stencil for the banners or use 'random' to cycle through them.
+      # cow_selection: ""
+      action_plugins: !unsafe '{% raw %}{{ ANSIBLE_HOME ~ "/plugins/action:/usr/share/ansible/plugins/action" }}{% endraw %}'
+      yaml_valid_extensions:
+        - ".yml"
+        - ".yaml"
+        - ".json"
+      callback_result_format: "yaml"
+
+    persistent_connection:
+      command_timeout: 15
+      connect_retry_timeout: 5
+      connect_timeout: 10
+...
