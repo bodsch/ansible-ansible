@@ -153,7 +153,7 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           DISTRIBUTION: ${{ matrix.image }}
 
-  arch_enhanced:
+  arch_enhanced_6:
     name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
     runs-on: ubuntu-20.04
     needs:
@@ -166,10 +166,148 @@ jobs:
         ansible-version:
           - '6.1'
           - '6.7'
-          - '7.1'
+        python:
+          - '3.10'
+          - '3.11'
+        scenario:
+          - default
+
+    steps:
+      - name: check out the codebase.
+        uses: actions/checkout@v3
+        with:
+          path: 'ansible-ansible'
+
+      - name: 🐍 set up python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "${{ matrix.python }}"
+
+      - name: install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r test-requirements.txt
+
+      - name: test with tox
+        run: |
+          make \
+            test \
+            -e TOX_SCENARIO="${{ matrix.scenario }}" \
+            -e TOX_ANSIBLE="ansible_${{ matrix.ansible-version }}" \
+            -e DISTRIBUTION="${{ matrix.image }}"
+
+        env:
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
+          DISTRIBUTION: ${{ matrix.image }}
+
+  arch_enhanced_7:
+    name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
+    runs-on: ubuntu-20.04
+    needs:
+      - arch
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - archlinux:latest
+        ansible-version:
+          - '7.2'
           - '7.7'
+        python:
+          - '3.10'
+          - '3.11'
+        scenario:
+          - default
+
+    steps:
+      - name: check out the codebase.
+        uses: actions/checkout@v3
+        with:
+          path: 'ansible-ansible'
+
+      - name: 🐍 set up python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "${{ matrix.python }}"
+
+      - name: install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r test-requirements.txt
+
+      - name: test with tox
+        run: |
+          make \
+            test \
+            -e TOX_SCENARIO="${{ matrix.scenario }}" \
+            -e TOX_ANSIBLE="ansible_${{ matrix.ansible-version }}" \
+            -e DISTRIBUTION="${{ matrix.image }}"
+
+        env:
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
+          DISTRIBUTION: ${{ matrix.image }}
+
+  arch_enhanced_8:
+    name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
+    runs-on: ubuntu-20.04
+    needs:
+      - arch
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - archlinux:latest
+        ansible-version:
           - '8.1'
           - '8.7'
+        python:
+          - '3.10'
+          - '3.11'
+        scenario:
+          - default
+
+    steps:
+      - name: check out the codebase.
+        uses: actions/checkout@v3
+        with:
+          path: 'ansible-ansible'
+
+      - name: 🐍 set up python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "${{ matrix.python }}"
+
+      - name: install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r test-requirements.txt
+
+      - name: test with tox
+        run: |
+          make \
+            test \
+            -e TOX_SCENARIO="${{ matrix.scenario }}" \
+            -e TOX_ANSIBLE="ansible_${{ matrix.ansible-version }}" \
+            -e DISTRIBUTION="${{ matrix.image }}"
+
+        env:
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
+          DISTRIBUTION: ${{ matrix.image }}
+
+  arch_enhanced_9:
+    name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
+    runs-on: ubuntu-20.04
+    needs:
+      - arch
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - archlinux:latest
+        ansible-version:
           - '9.1'
         python:
           - '3.10'
@@ -206,7 +344,7 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           DISTRIBUTION: ${{ matrix.image }}
 
-  debian_enhanced:
+  debian_enhanced_6:
     name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
     runs-on: ubuntu-20.04
     needs:
@@ -219,10 +357,151 @@ jobs:
         ansible-version:
           - '6.1'
           - '6.7'
-          - '7.1'
+        python:
+          - '3.10'
+          - '3.11'
+        scenario:
+          - default
+
+    steps:
+      - name: check out the codebase.
+        uses: actions/checkout@v3
+        with:
+          path: 'ansible-ansible'
+          ref: ${{ github.event.workflow_run.head_branch }}
+
+      - name: 🐍 set up python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "${{ matrix.python }}"
+
+      - name: install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r test-requirements.txt
+
+      - name: test with tox
+        run: |
+          make \
+            test \
+            -e TOX_SCENARIO="${{ matrix.scenario }}" \
+            -e TOX_ANSIBLE="ansible_${{ matrix.ansible-version }}" \
+            -e DISTRIBUTION="${{ matrix.image }}"
+
+        env:
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
+          DISTRIBUTION: ${{ matrix.image }}
+
+  debian_enhanced_7:
+    name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
+    runs-on: ubuntu-20.04
+    needs:
+      - debian
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - debian:12
+        ansible-version:
+          - '7.2'
           - '7.7'
+        python:
+          - '3.10'
+          - '3.11'
+        scenario:
+          - default
+
+    steps:
+      - name: check out the codebase.
+        uses: actions/checkout@v3
+        with:
+          path: 'ansible-ansible'
+          ref: ${{ github.event.workflow_run.head_branch }}
+
+      - name: 🐍 set up python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "${{ matrix.python }}"
+
+      - name: install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r test-requirements.txt
+
+      - name: test with tox
+        run: |
+          make \
+            test \
+            -e TOX_SCENARIO="${{ matrix.scenario }}" \
+            -e TOX_ANSIBLE="ansible_${{ matrix.ansible-version }}" \
+            -e DISTRIBUTION="${{ matrix.image }}"
+
+        env:
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
+          DISTRIBUTION: ${{ matrix.image }}
+
+  debian_enhanced_8:
+    name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
+    runs-on: ubuntu-20.04
+    needs:
+      - debian
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - debian:12
+        ansible-version:
           - '8.1'
           - '8.7'
+        python:
+          - '3.10'
+          - '3.11'
+        scenario:
+          - default
+
+    steps:
+      - name: check out the codebase.
+        uses: actions/checkout@v3
+        with:
+          path: 'ansible-ansible'
+          ref: ${{ github.event.workflow_run.head_branch }}
+
+      - name: 🐍 set up python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "${{ matrix.python }}"
+
+      - name: install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r test-requirements.txt
+
+      - name: test with tox
+        run: |
+          make \
+            test \
+            -e TOX_SCENARIO="${{ matrix.scenario }}" \
+            -e TOX_ANSIBLE="ansible_${{ matrix.ansible-version }}" \
+            -e DISTRIBUTION="${{ matrix.image }}"
+
+        env:
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
+          DISTRIBUTION: ${{ matrix.image }}
+
+  debian_enhanced_9:
+    name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
+    runs-on: ubuntu-20.04
+    needs:
+      - debian
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - debian:12
+        ansible-version:
           - '9.1'
         python:
           - '3.10'
