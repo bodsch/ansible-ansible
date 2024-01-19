@@ -153,7 +153,7 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           DISTRIBUTION: ${{ matrix.image }}
 
-  arch_enhanced_6:
+  arch_version_6:
     name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
     runs-on: ubuntu-20.04
     needs:
@@ -201,7 +201,7 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           DISTRIBUTION: ${{ matrix.image }}
 
-  arch_enhanced_7:
+  arch_version_7:
     name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
     runs-on: ubuntu-20.04
     needs:
@@ -249,7 +249,7 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           DISTRIBUTION: ${{ matrix.image }}
 
-  arch_enhanced_8:
+  arch_version_8:
     name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
     runs-on: ubuntu-20.04
     needs:
@@ -297,7 +297,7 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           DISTRIBUTION: ${{ matrix.image }}
 
-  arch_enhanced_9:
+  arch_version_9:
     name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
     runs-on: ubuntu-20.04
     needs:
@@ -344,7 +344,7 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           DISTRIBUTION: ${{ matrix.image }}
 
-  debian_enhanced_6:
+  debian_version_6:
     name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
     runs-on: ubuntu-20.04
     needs:
@@ -393,7 +393,7 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           DISTRIBUTION: ${{ matrix.image }}
 
-  debian_enhanced_7:
+  debian_version_7:
     name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
     runs-on: ubuntu-20.04
     needs:
@@ -404,7 +404,12 @@ jobs:
         image:
           - debian:12
         ansible-version:
+          - '7.1'
           - '7.2'
+          - '7.3'
+          - '7.4'
+          - '7.5'
+          - '7.6'
           - '7.7'
         python:
           - '3.10'
@@ -442,7 +447,7 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           DISTRIBUTION: ${{ matrix.image }}
 
-  debian_enhanced_8:
+  debian_version_8:
     name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
     runs-on: ubuntu-20.04
     needs:
@@ -491,7 +496,7 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           DISTRIBUTION: ${{ matrix.image }}
 
-  debian_enhanced_9:
+  debian_version_9:
     name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
     runs-on: ubuntu-20.04
     needs:
