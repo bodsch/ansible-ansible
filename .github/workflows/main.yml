@@ -212,7 +212,7 @@ jobs:
         image:
           - archlinux:latest
         ansible-version:
-          - '7.2'
+          # - '7.2'
           - '7.7'
         python:
           - '3.10'
@@ -404,12 +404,12 @@ jobs:
         image:
           - debian:12
         ansible-version:
-          - '7.1'
-          - '7.2'
-          - '7.3'
-          - '7.4'
-          - '7.5'
-          - '7.6'
+          # - '7.1' works *NOT* in a github workflow, but "on my machine" :}
+          # - '7.2'
+          # - '7.3'
+          # - '7.4'
+          # - '7.5'
+          # - '7.6'
           - '7.7'
         python:
           - '3.10'
