@@ -6,12 +6,12 @@ Ansible role to install and configure ansible on various linux systems.
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/bodsch/ansible-ansible/main.yml?branch=main)][ci]
 [![GitHub issues](https://img.shields.io/github/issues/bodsch/ansible-ansible)][issues]
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/bodsch/ansible-ansible)][releases]
-[![Ansible Quality Score](https://img.shields.io/ansible/quality/50067?label=role%20quality)][quality]
+[![Ansible Downloads](https://img.shields.io/ansible/role/d/bodsch/ansible?logo=ansible)][galaxy]
 
 [ci]: https://github.com/bodsch/ansible-ansible/actions
 [issues]: https://github.com/bodsch/ansible-ansible/issues?q=is%3Aopen+is%3Aissue
 [releases]: https://github.com/bodsch/ansible-ansible/releases
-[quality]: https://galaxy.ansible.com/bodsch/ansible
+[galaxy]: https://galaxy.ansible.com/ui/standalone/roles/bodsch/ansible/
 
 ## Requirements & Dependencies
 
@@ -31,6 +31,60 @@ Tested on
 ## Configuration
 
 ```yaml
+ansible_config:
+  system:
+    defaults: {}
+    privilege_escalation: {}
+    persistent_connection: {}
+    connection: {}
+    colors: {}
+    selinux: {}
+    diff: {}
+    galaxy: {}
+    inventory: {}
+    netconf_connection: {}
+    paramiko_connection: {}
+    jinja2: {}
+    tags: {}
+    runas_become_plugin: {}
+    su_become_plugin: {}
+    sudo_become_plugin: {}
+    callback_tree: {}
+    ssh_connection: {}
+    winrm: {}
+    inventory_plugins: {}
+    inventory_plugin_script: {}
+    inventory_plugin_yaml: {}
+    url_lookup: {}
+    powershell: {}
+    vars_host_group_vars: {}
+  users: 
+    - name: foo
+      defaults: {}
+      privilege_escalation: {}
+      persistent_connection: {}
+      connection: {}
+      colors: {}
+      selinux: {}
+      diff: {}
+      galaxy: {}
+      inventory: {}
+      netconf_connection: {}
+      paramiko_connection: {}
+      jinja2: {}
+      tags: {}
+      runas_become_plugin: {}
+      su_become_plugin: {}
+      sudo_become_plugin: {}
+      callback_tree: {}
+      ssh_connection: {}
+      winrm: {}
+      inventory_plugins: {}
+      inventory_plugin_script: {}
+      inventory_plugin_yaml: {}
+      url_lookup: {}
+      powershell: {}
+      vars_host_group_vars: {}
 ```
 
 ---
@@ -55,4 +109,4 @@ If you want to use something stable, please use a [Tagged Version](https://githu
 [Apache](LICENSE)
 
 **FREE SOFTWARE, HELL YEAH!**
-    
+

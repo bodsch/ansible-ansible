@@ -25,4 +25,22 @@ ansible_config:
       command_timeout: 15
       connect_retry_timeout: 5
       connect_timeout: 10
+
+    connection:
+      pipelining: true
+
+    colors:
+      changed: yellow
+      console_prompt: white
+
+    diff:
+      always: true
+
+    jinja2:
+      # [string, to_json, to_nice_json, to_yaml, to_nice_yaml, ppretty, json]
+      dont_type_filters:
+        - string
+        - to_json
+        - to_nice_json
+
 ...

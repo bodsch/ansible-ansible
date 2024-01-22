@@ -149,8 +149,8 @@ ansible_defaults_config:
 
     privilege_escalation:
       agnostic_become_prompt: ""                        # True
-      become_allow_same_user: ""                        # False
       become: ""                                        # False
+      become_allow_same_user: ""                        # False
       become_ask_pass: ""                               # False
       become_exe: ""                                    #
       become_flags: ""                                  #
@@ -168,41 +168,155 @@ ansible_defaults_config:
       pipelining: ""                                    # False
 
     colors:
-      changed: ""                                      # yellow
-      console_prompt: ""                               # white
-      debug: ""                                        # dark gray
-      deprecate: ""                                    # purple
-      diff_add: ""                                     # green
-      diff_lines: ""                                   # cyan
-      diff_remove: ""                                  # red
-      error: ""                                        # red
-      highlight: ""                                    # white
-      ok: ""                                           # green
-      skip: ""                                         # cyan
-      unreachable: ""                                  # bright red
-      verbose: ""                                      # blue
-      warn: ""                                         # bright purple
+      changed: ""                                       # yellow
+      console_prompt: ""                                # white
+      debug: ""                                         # dark gray
+      deprecate: ""                                     # purple
+      diff_add: ""                                      # green
+      diff_lines: ""                                    # cyan
+      diff_remove: ""                                   # red
+      error: ""                                         # red
+      highlight: ""                                     # white
+      ok: ""                                            # green
+      skip: ""                                          # cyan
+      unreachable: ""                                   # bright red
+      verbose: ""                                       # blue
+      warn: ""                                          # bright purple
 
-    selinux: {}
-    diff: {}
-    galaxy: {}
-    inventory: {}
-    netconf_connection: {}
-    paramiko_connection: {}
-    jinja2: {}
-    tags: {}
-    runas_become_plugin: {}
-    su_become_plugin: {}
-    sudo_become_plugin: {}
-    callback_tree: {}
-    ssh_connection: {}
-    winrm: {}
-    inventory_plugins: {}
-    inventory_plugin_script: {}
-    inventory_plugin_yaml: {}
-    url_lookup: {}
-    powershell: {}
-    vars_host_group_vars: {}
+    selinux:
+      libvirt_lxc_noseclabel: ""                        #
+      special_context_filesystems: []                   # [fuse, nfs, vboxsf, ramfs, 9p, vfat]
+
+    diff:
+      always: ""                                        # False
+      context: ""                                       # 3
+
+    galaxy:
+      cache_dir: ""                                     # {% raw %}{{ ANSIBLE_HOME ~ "/galaxy_cache" }}{% endraw %}
+      collection_skeleton: ""
+      collection_skeleton_ignore: ""                    # ['^.git$', '^.*/.git_keep$']
+      disable_gpg_verify: ""                            # False
+      display_progress: ""                              #
+      gpg_keyring: ""                                   #
+      ignore_certs: ""                                  #
+      ignore_signature_status_codes: ""                 #
+      required_valid_signature_count: ""                # 1
+      role_skeleton: ""                                 #
+      role_skeleton_ignore: []                          # ['^.git$', '^.*/.git_keep$']
+      server: ""                                        # https://galaxy.ansible.com
+      server_list: []
+      token_path: ""                                    # {% raw %}{{ ANSIBLE_HOME ~ "/galaxy_token" }}{% endraw %}
+
+    inventory:
+      any_unparsed_is_failed: ""                        # False
+      cache: ""                                         # False
+      cache_connection: ""                              #
+      cache_plugin: ""                                  #
+      cache_prefix: ""                                  # ansible_inventory_
+      cache_timeout: ""                                 # 3600
+      enable_plugins: []                                # host_list, script, auto, yaml, ini, toml
+      export: ""                                        # False
+      host_pattern_mismatch: ""                         # warning
+      ignore_extensions: ""                             # {% raw %}{{(REJECT_EXTS + ('.orig', '.ini', '.cfg', '.retry'))}}
+      ignore_patterns: ""                               #
+      inventory_unparsed_warning: ""                    # True
+      unparsed_is_failed: ""                            # False
+
+    netconf_connection:
+      ssh_config: ""                                    #
+
+    paramiko_connection:
+      banner_timeout: ""                                # 30
+      host_key_auto_add: ""                             #
+      host_key_checking: ""                             # True
+      look_for_keys: ""                                 # True
+      proxy_command: ""                                 #
+      pty: ""                                           # True
+      record_host_keys: ""                              # True
+      remote_user: ""                                   #
+      use_rsa_sha2_algorithms: ""                       # True
+
+    jinja2:
+      dont_type_filters: []                             # [string, to_json, to_nice_json, to_yaml, to_nice_yaml, ppretty, json]
+
+    tags:
+      run: []
+      skip: []
+
+    runas_become_plugin:
+      flags: ""
+      password: ""
+      user: ""
+
+    su_become_plugin:
+      executable: ""                                    # su
+      flags: ""                                         #
+      password: ""                                      #
+      user: ""                                          # root
+      localized_prompts: []                             #
+
+    sudo_become_plugin:
+      executable: ""                                    # sudo
+      flags: ""                                         # -H -S -n
+      password: ""                                      #
+      user: ""                                          # root
+
+    callback_tree:
+      directory: ""                                     # ~/.ansible/tree
+
+    ssh_connection:
+      control_path: ""                                  #
+      control_path_dir: ""                              # ~/.ansible/cp
+      host_key_checking: ""                             # True
+      pipelining: ""                                    # False
+      pkcs11_provider: ""                               #
+      retries: ""                                       # 0
+      scp_executable: ""                                # scp
+      scp_extra_args: ""                                #
+      scp_if_ssh: ""                                    # smart
+      sftp_batch_mode: ""                               # yes
+      sftp_executable: ""                               # sftp
+      sftp_extra_args: ""                               #
+      ssh_args: ""                                      # -C -o ControlMaster: "" # auto -o ControlPersist: "" # 60s
+      ssh_common_args: ""                               #
+      ssh_executable: ""                                # ssh
+      ssh_extra_args: ""                                #
+      sshpass_prompt: ""                                #
+      timeout: ""                                       # 10
+      transfer_method: ""                               #
+      usetty: ""                                        # yes
+
+    winrm:
+      kinit_env_vars: ""
+
+    inventory_plugins:
+      use_extra_vars: ""
+
+    inventory_plugin_script:
+      always_show_stderr: ""
+
+    inventory_plugin_yaml:
+      yaml_valid_extensions: []                         # .yaml, .yml, .json
+
+    url_lookup:
+      ca_path: ""                                       #
+      ciphers: ""                                       #
+      follow_redirects: ""                              # urllib2
+      force: ""                                         # False
+      agent: ""                                         # False | ansible-httpget
+      timeout: ""                                       # 10
+      unix_socket: ""                                   #
+      unredirected_headers: ""                          #
+      use_gssapi: ""                                    # False
+      use_netrc: ""                                     # True
+
+    powershell:
+      async_dir: ""                                     # %USERPROFILE%\.ansible_async
+      remote_tmp: ""                                    # %TEMP%
+
+    vars_host_group_vars:
+      stage: ""                                         #
+
   users: []
     # - name: foo
     #   default: {}
