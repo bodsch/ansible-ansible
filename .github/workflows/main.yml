@@ -236,6 +236,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r test-requirements.txt
 
+      - name: get informations
+        run: |
+          ansible --version
+          ansible-galaxy collection list
+
+      - name: force reinstall of community.docker
+        run: |
+          ansible-galaxy collection install community.docker --force
+
       - name: test with tox
         run: |
           make \
