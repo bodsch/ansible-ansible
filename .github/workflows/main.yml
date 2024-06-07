@@ -238,8 +238,15 @@ jobs:
 
       - name: get informations
         run: |
+          echo "--------------------------"
           ansible --version
+          echo "--------------------------"
+          ansible-config dump
+          echo "--------------------------"
+          ansible-config dump --only-changed
+          echo "--------------------------"
           ansible-galaxy collection list
+          echo "--------------------------"
 
       - name: force reinstall of community.docker
         run: |
