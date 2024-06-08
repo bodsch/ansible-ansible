@@ -14,7 +14,7 @@ defaults:
 
 jobs:
   arch:
-    name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
+    name: "${{ matrix.image }} / ansible ${{ matrix.ansible-version }} / python ${{ matrix.python }}"
     runs-on: ubuntu-20.04
     if: ${{ github.event_name == 'schedule' || github.event.workflow_run.conclusion == 'success' }}
     strategy:
@@ -66,7 +66,7 @@ jobs:
           DISTRIBUTION: ${{ matrix.image }}
 
   debian:
-    name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
+    name: "${{ matrix.image }} / ansible ${{ matrix.ansible-version }} / python ${{ matrix.python }}"
     runs-on: ubuntu-20.04
     if: ${{ github.event_name == 'schedule' || github.event.workflow_run.conclusion == 'success' }}
     strategy:
@@ -118,7 +118,7 @@ jobs:
           DISTRIBUTION: ${{ matrix.image }}
 
   ubuntu:
-    name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
+    name: "${{ matrix.image }} / ansible ${{ matrix.ansible-version }} / python ${{ matrix.python }}"
     runs-on: ubuntu-20.04
     if: ${{ github.event_name == 'schedule' || github.event.workflow_run.conclusion == 'success' }}
     strategy:
@@ -169,8 +169,8 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           DISTRIBUTION: ${{ matrix.image }}
 
-  arch_version_6:
-    name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
+  arch_with_ansible_6:
+    name: "${{ matrix.image }} / ansible ${{ matrix.ansible-version }} / python ${{ matrix.python }}"
     runs-on: ubuntu-20.04
     needs:
       - arch
@@ -222,8 +222,8 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           DISTRIBUTION: ${{ matrix.image }}
 
-  arch_version_7:
-    name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
+  arch_with_ansible_7:
+    name: "${{ matrix.image }} / ansible ${{ matrix.ansible-version }} / python ${{ matrix.python }}"
     runs-on: ubuntu-20.04
     needs:
       - arch
@@ -274,8 +274,8 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           DISTRIBUTION: ${{ matrix.image }}
 
-  arch_version_8:
-    name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
+  arch_with_ansible_8:
+    name: "${{ matrix.image }} / ansible ${{ matrix.ansible-version }} / python ${{ matrix.python }}"
     runs-on: ubuntu-20.04
     needs:
       - arch
@@ -327,8 +327,8 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           DISTRIBUTION: ${{ matrix.image }}
 
-  arch_version_9:
-    name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
+  arch_with_ansible_9:
+    name: "${{ matrix.image }} / ansible ${{ matrix.ansible-version }} / python ${{ matrix.python }}"
     runs-on: ubuntu-20.04
     needs:
       - arch
@@ -380,8 +380,8 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           DISTRIBUTION: ${{ matrix.image }}
 
-  arch_version_10:
-    name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
+  arch_with_ansible_10:
+    name: "${{ matrix.image }} / ansible ${{ matrix.ansible-version }} / python ${{ matrix.python }}"
     runs-on: ubuntu-20.04
     needs:
       - arch
@@ -432,8 +432,8 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           DISTRIBUTION: ${{ matrix.image }}
 
-  debian_version_6:
-    name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
+  debian_with_ansible_6:
+    name: "${{ matrix.image }} / ansible ${{ matrix.ansible-version }} / python ${{ matrix.python }}"
     runs-on: ubuntu-20.04
     needs:
       - debian
@@ -486,8 +486,8 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           DISTRIBUTION: ${{ matrix.image }}
 
-  debian_version_7:
-    name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
+  debian_with_ansible_7:
+    name: "${{ matrix.image }} / ansible ${{ matrix.ansible-version }} / python ${{ matrix.python }}"
     runs-on: ubuntu-20.04
     needs:
       - debian
@@ -545,8 +545,8 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           DISTRIBUTION: ${{ matrix.image }}
 
-  debian_version_8:
-    name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
+  debian_with_ansible_8:
+    name: "${{ matrix.image }} / ansible ${{ matrix.ansible-version }} / python ${{ matrix.python }}"
     runs-on: ubuntu-20.04
     needs:
       - debian
@@ -599,8 +599,8 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           DISTRIBUTION: ${{ matrix.image }}
 
-  debian_version_9:
-    name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
+  debian_with_ansible_9:
+    name: "${{ matrix.image }} / ansible ${{ matrix.ansible-version }} / python ${{ matrix.python }}"
     runs-on: ubuntu-20.04
     needs:
       - debian
@@ -653,8 +653,8 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           DISTRIBUTION: ${{ matrix.image }}
 
-  debian_version_10:
-    name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
+  debian_with_ansible_10:
+    name: "${{ matrix.image }} / ansible ${{ matrix.ansible-version }} / python ${{ matrix.python }}"
     runs-on: ubuntu-20.04
     needs:
       - debian
