@@ -24,9 +24,10 @@ jobs:
           - archlinux:latest
           - artixlinux:latest
         ansible-version:
-          - '6.7'
+          - '8.5'
         python:
-          - '3.10'
+          - '3.11'
+          - '3.12'
         scenario:
           - default
 
@@ -45,6 +46,11 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r test-requirements.txt
+
+      - name: force reinstall of community.docker
+        run: |
+          mkdir -p /home/runner/.ansible/collections
+          ansible-galaxy collection install community.docker --force
 
       - name: test with tox
         run: |
@@ -72,7 +78,7 @@ jobs:
         ansible-version:
           - '6.7'
         python:
-          - '3.10'
+          - '3.11'
         scenario:
           - default
 
@@ -92,6 +98,11 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r test-requirements.txt
+
+      - name: force reinstall of community.docker
+        run: |
+          mkdir -p /home/runner/.ansible/collections
+          ansible-galaxy collection install community.docker --force
 
       - name: test with tox
         run: |
@@ -119,7 +130,7 @@ jobs:
         ansible-version:
           - '6.7'
         python:
-          - '3.10'
+          - '3.11'
         scenario:
           - default
 
@@ -139,6 +150,11 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r test-requirements.txt
+
+      - name: force reinstall of community.docker
+        run: |
+          mkdir -p /home/runner/.ansible/collections
+          ansible-galaxy collection install community.docker --force
 
       - name: test with tox
         run: |
@@ -167,55 +183,6 @@ jobs:
           - '6.1'
           - '6.7'
         python:
-          - '3.10'
-          - '3.11'
-        scenario:
-          - default
-
-    steps:
-      - name: check out the codebase.
-        uses: actions/checkout@v4
-        with:
-          path: 'ansible-ansible'
-
-      - name: 🐍 set up python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "${{ matrix.python }}"
-
-      - name: install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r test-requirements.txt
-
-      - name: test with tox
-        run: |
-          make \
-            test \
-            -e TOX_SCENARIO="${{ matrix.scenario }}" \
-            -e TOX_ANSIBLE="ansible_${{ matrix.ansible-version }}" \
-            -e DISTRIBUTION="${{ matrix.image }}"
-
-        env:
-          PY_COLORS: '1'
-          ANSIBLE_FORCE_COLOR: '1'
-          DISTRIBUTION: ${{ matrix.image }}
-
-  arch_version_7:
-    name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
-    runs-on: ubuntu-20.04
-    #needs:
-    #  - arch
-    strategy:
-      fail-fast: false
-      matrix:
-        image:
-          - archlinux:latest
-        ansible-version:
-          # - '7.2'
-          - '7.7'
-        python:
-          - '3.10'
           - '3.11'
           - '3.12'
         scenario:
@@ -237,6 +204,57 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r test-requirements.txt
 
+      - name: force reinstall of community.docker
+        run: |
+          mkdir -p /home/runner/.ansible/collections
+          ansible-galaxy collection install community.docker --force
+
+      - name: test with tox
+        run: |
+          make \
+            test \
+            -e TOX_SCENARIO="${{ matrix.scenario }}" \
+            -e TOX_ANSIBLE="ansible_${{ matrix.ansible-version }}" \
+            -e DISTRIBUTION="${{ matrix.image }}"
+
+        env:
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
+          DISTRIBUTION: ${{ matrix.image }}
+
+  arch_version_7:
+    name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
+    runs-on: ubuntu-20.04
+    needs:
+      - arch
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - archlinux:latest
+        ansible-version:
+          - '7.5'
+        python:
+          - '3.11'
+          - '3.12'
+        scenario:
+          - default
+
+    steps:
+      - name: check out the codebase.
+        uses: actions/checkout@v4
+        with:
+          path: 'ansible-ansible'
+
+      - name: 🐍 set up python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "${{ matrix.python }}"
+
+      - name: install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r test-requirements.txt
 
       - name: force reinstall of community.docker
         run: |
@@ -267,11 +285,11 @@ jobs:
         image:
           - archlinux:latest
         ansible-version:
-          - '8.1'
-          - '8.7'
+          - '8.0'
+          - '8.5'
         python:
-          - '3.10'
           - '3.11'
+          - '3.12'
         scenario:
           - default
 
@@ -320,10 +338,63 @@ jobs:
         image:
           - archlinux:latest
         ansible-version:
-          - '9.1'
+          - '9.0'
+          - '9.5'
         python:
-          - '3.10'
           - '3.11'
+          - '3.12'
+        scenario:
+          - default
+
+    steps:
+      - name: check out the codebase.
+        uses: actions/checkout@v4
+        with:
+          path: 'ansible-ansible'
+
+      - name: 🐍 set up python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "${{ matrix.python }}"
+
+      - name: install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r test-requirements.txt
+
+      - name: force reinstall of community.docker
+        run: |
+          mkdir -p /home/runner/.ansible/collections
+          ansible-galaxy collection install community.docker --force
+
+      - name: test with tox
+        run: |
+          make \
+            test \
+            -e TOX_SCENARIO="${{ matrix.scenario }}" \
+            -e TOX_ANSIBLE="ansible_${{ matrix.ansible-version }}" \
+            -e DISTRIBUTION="${{ matrix.image }}"
+
+        env:
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
+          DISTRIBUTION: ${{ matrix.image }}
+
+  arch_version_10:
+    name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
+    runs-on: ubuntu-20.04
+    needs:
+      - arch
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - archlinux:latest
+        ansible-version:
+          - '10.0'
+        python:
+          - '3.11'
+          - '3.12'
         scenario:
           - default
 
@@ -397,6 +468,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r test-requirements.txt
 
+      - name: force reinstall of community.docker
+        run: |
+          mkdir -p /home/runner/.ansible/collections
+          ansible-galaxy collection install community.docker --force
+
       - name: test with tox
         run: |
           make \
@@ -427,7 +503,7 @@ jobs:
           # - '7.4'
           # - '7.5'
           # - '7.6'
-          - '7.7'
+          - '7.5'
         python:
           - '3.10'
           - '3.11'
@@ -480,8 +556,8 @@ jobs:
         image:
           - debian:12
         ansible-version:
-          - '8.1'
-          - '8.7'
+          - '8.0'
+          - '8.5'
         python:
           - '3.10'
           - '3.11'
@@ -534,7 +610,61 @@ jobs:
         image:
           - debian:12
         ansible-version:
-          - '9.1'
+          - '9.0'
+          - '9.5'
+        python:
+          - '3.10'
+          - '3.11'
+        scenario:
+          - default
+
+    steps:
+      - name: check out the codebase.
+        uses: actions/checkout@v4
+        with:
+          path: 'ansible-ansible'
+          ref: ${{ github.event.workflow_run.head_branch }}
+
+      - name: 🐍 set up python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "${{ matrix.python }}"
+
+      - name: install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r test-requirements.txt
+
+      - name: force reinstall of community.docker
+        run: |
+          mkdir -p /home/runner/.ansible/collections
+          ansible-galaxy collection install community.docker --force
+
+      - name: test with tox
+        run: |
+          make \
+            test \
+            -e TOX_SCENARIO="${{ matrix.scenario }}" \
+            -e TOX_ANSIBLE="ansible_${{ matrix.ansible-version }}" \
+            -e DISTRIBUTION="${{ matrix.image }}"
+
+        env:
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
+          DISTRIBUTION: ${{ matrix.image }}
+
+  debian_version_10:
+    name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python }}"
+    runs-on: ubuntu-20.04
+    needs:
+      - debian
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - debian:12
+        ansible-version:
+          - '10.0'
         python:
           - '3.10'
           - '3.11'
