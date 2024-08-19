@@ -109,7 +109,7 @@ class GitHub:
 
                 msg_wf = ','.join(str(x) for x in runned_wf)
 
-                print(f"I will delete the following workflows: {msg_wf}")
+                print("  delete the following workflows:")
                 self.remove_workflows(runned_wf)
 
     def list_workflow(self, wf_id):
