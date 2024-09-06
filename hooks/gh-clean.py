@@ -140,7 +140,7 @@ class GitHub:
 
             response = requests.delete(url, headers=self.headers)
 
-            print(f"  = {response}")
+            # print(f"  = {response}")
 
         return result
 
