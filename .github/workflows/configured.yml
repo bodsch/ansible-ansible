@@ -19,7 +19,7 @@ env:
 
 jobs:
   debian:
-    name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python_version_version }}"
+    name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python_version }}"
     runs-on: ubuntu-22.04
     if: ${{ github.event_name == 'schedule' || github.event.workflow_run.conclusion == 'success' }}
     strategy:
@@ -82,7 +82,7 @@ jobs:
           - "3.11"
           - "3.12"
         scenario:
-          - default
+          - configured
 
     steps:
       - name: check out the codebase.
@@ -135,7 +135,7 @@ jobs:
           - '3.11'
           - '3.12'
         scenario:
-          - default
+          - configured
 
     steps:
       - name: check out the codebase.
@@ -188,7 +188,7 @@ jobs:
           - '3.11'
           - '3.12'
         scenario:
-          - default
+          - configured
 
     steps:
       - name: check out the codebase.
