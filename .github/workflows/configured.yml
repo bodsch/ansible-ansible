@@ -13,9 +13,13 @@ defaults:
   run:
     working-directory: 'ansible-ansible'
 
+env:
+  PY_COLORS: '1'
+  ANSIBLE_FORCE_COLOR: '1'
+
 jobs:
-  deb:
-    name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python_version }}"
+  debian:
+    name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python_version_version }}"
     runs-on: ubuntu-22.04
     if: ${{ github.event_name == 'schedule' || github.event.workflow_run.conclusion == 'success' }}
     strategy:
@@ -25,8 +29,9 @@ jobs:
           - debian:12
         ansible-version:
           - '8.5'
-        python:
-          - '3.10'
+        python_version:
+          - "3.11"
+          - "3.12"
         scenario:
           - configured
 
@@ -40,12 +45,17 @@ jobs:
       - name: 🐍 set up python
         uses: actions/setup-python@v5
         with:
-          python-version: "${{ matrix.python }}"
+          python-version: "${{ matrix.python_version }}"
 
       - name: install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r test-requirements.txt
+
+      - name: force reinstall of community.docker
+        run: |
+          mkdir -p /home/runner/.ansible/collections
+          ansible-galaxy collection install community.docker --force
 
       - name: test with tox
         run: |
@@ -55,7 +65,157 @@ jobs:
             -e TOX_ANSIBLE="ansible_${{ matrix.ansible-version }}" \
             -e DISTRIBUTION="${{ matrix.image }}"
 
-        env:
-          PY_COLORS: '1'
-          ANSIBLE_FORCE_COLOR: '1'
-          DISTRIBUTION: ${{ matrix.image }}
+  ubuntu:
+    name: "${{ matrix.image }} / ansible ${{ matrix.ansible-version }} / python ${{ matrix.python_version }}"
+    runs-on: ubuntu-22.04
+    if: ${{ github.event_name == 'schedule' || github.event.workflow_run.conclusion == 'success' }}
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - ubuntu:20.04
+          - ubuntu:22.04
+          - ubuntu:24.04
+        ansible-version:
+          - '8.5'
+        python_version:
+          - "3.11"
+          - "3.12"
+        scenario:
+          - default
+
+    steps:
+      - name: check out the codebase.
+        uses: actions/checkout@v4
+        with:
+          path: 'ansible-ansible'
+          ref: ${{ github.event.workflow_run.head_branch }}
+
+      - name: 🐍 set up python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "${{ matrix.python_version }}"
+
+      - name: install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r test-requirements.txt
+
+      - name: force reinstall of community.docker
+        run: |
+          mkdir -p /home/runner/.ansible/collections
+          ansible-galaxy collection install community.docker --force
+
+      - name: test with tox
+        run: |
+          make \
+            test \
+            -e TOX_SCENARIO="${{ matrix.scenario }}" \
+            -e TOX_ANSIBLE="ansible_${{ matrix.ansible-version }}" \
+            -e DISTRIBUTION="${{ matrix.image }}"
+
+  scenarios_for_arch:
+    name: "${{ matrix.image }} / ${{ matrix.scenario }} / ${{ matrix.ansible-version }} / ${{ matrix.python_version }}"
+    runs-on: ubuntu-22.04
+    if: ${{ github.event_name == 'schedule' || github.event.workflow_run.conclusion == 'success' }}
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - archlinux:latest
+        ansible-version:
+          - '6.1'
+          - '7.5'
+          - '8.0'
+          - '8.5'
+          - '9.0'
+          - '9.5'
+          - '10.0'
+        python_version:
+          - '3.11'
+          - '3.12'
+        scenario:
+          - default
+
+    steps:
+      - name: check out the codebase.
+        uses: actions/checkout@v4
+        with:
+          path: 'ansible-ansible'
+
+      - name: 🐍 set up python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "${{ matrix.python_version }}"
+
+      - name: install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r test-requirements.txt
+
+      - name: force reinstall of community.docker
+        run: |
+          mkdir -p /home/runner/.ansible/collections
+          ansible-galaxy collection install community.docker --force
+
+      - name: test with tox
+        run: |
+          make \
+            test \
+            -e TOX_SCENARIO="${{ matrix.scenario }}" \
+            -e TOX_ANSIBLE="ansible_${{ matrix.ansible-version }}" \
+            -e DISTRIBUTION="${{ matrix.image }}"
+
+  scenarios_for_debian:
+    name: "${{ matrix.image }} / ansible ${{ matrix.ansible-version }} / python ${{ matrix.python_version }}"
+    runs-on: ubuntu-22.04
+    needs:
+      - debian
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - debian:12
+        ansible-version:
+          - '6.1'
+          - '7.5'
+          - '8.0'
+          - '8.5'
+          - '9.0'
+          - '9.5'
+          - '10.0'
+        python_version:
+          - '3.11'
+          - '3.12'
+        scenario:
+          - default
+
+    steps:
+      - name: check out the codebase.
+        uses: actions/checkout@v4
+        with:
+          path: 'ansible-ansible'
+          ref: ${{ github.event.workflow_run.head_branch }}
+
+      - name: 🐍 set up python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "${{ matrix.python_version }}"
+
+      - name: install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r test-requirements.txt
+
+      - name: force reinstall of community.docker
+        run: |
+          mkdir -p /home/runner/.ansible/collections
+          ansible-galaxy collection install community.docker --force
+
+      - name: test with tox
+        run: |
+          make \
+            test \
+            -e TOX_SCENARIO="${{ matrix.scenario }}" \
+            -e TOX_ANSIBLE="ansible_${{ matrix.ansible-version }}" \
+            -e DISTRIBUTION="${{ matrix.image }}"
